@@ -1,4 +1,5 @@
 import { auth0 } from "@/lib/auth0";
+import Image from "next/image";
 import Typewriter from "@/components/Typewriter";
 import HeaderProfile from "@/components/HeaderProfile";
 import { useMutation } from "convex/react";
@@ -104,31 +105,47 @@ export default async function Home() {
 
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         {/* ── HERO ── */}
-        <section className="py-24 md:py-32">
-          <p className="mb-4 text-sm uppercase tracking-widest text-white/60">
-           elcome
-          </p>
-          <h1 className="text-5xl font-bold uppercase leading-tight md:text-7xl">
-            <Typewriter text="CLAIMR" speed={120} />
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-            Claim bounties. Ship proof. Get paid.&nbsp;
-            <br />
-            On-chain settlement for real work.
-          </p>
-          <div className="mt-10 flex gap-4">
-            <a
-              href="/bounties"
-              className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
-            >
-              View Bounties
-            </a>
-            <a
-              href="#contact"
-              className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
-            >
-              Contact Us
-            </a>
+        <section className="py-24 md:py-32 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          {/* Left — text */}
+          <div className="flex-1">
+            <p className="mb-4 text-sm uppercase tracking-widest text-white/60">
+              // welcome
+            </p>
+            <h1 className="text-5xl font-bold uppercase leading-tight md:text-7xl">
+              <Typewriter text="CLAIMR" speed={120} />
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+              Claim bounties. Ship proof. Get paid.&nbsp;
+              <br />
+              On-chain settlement for real work.
+            </p>
+            <div className="mt-10 flex gap-4">
+              <a
+                href="/bounties"
+                className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
+              >
+                View Bounties
+              </a>
+              <a
+                href="#contact"
+                className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+
+          {/* Right — GIF */}
+          <div className="flex-shrink-0 w-full md:w-[380px]">
+            <Image
+              src="/disney, wat, well, is there anything else or is that it, is that just it, are you fucking kidding me, are you serious right now.gif"
+              alt="Paperman animation"
+              width={380}
+              height={480}
+              unoptimized
+              className="w-full rounded-full  grayscale hover:grayscale-0 transition-all duration-700"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </section>
 
