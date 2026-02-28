@@ -141,12 +141,13 @@ export default async function Home() {
                   </span>
                 </div>
                 
-                <button className="relative border border-[#1E1E2E] bg-[#12121A] p-2.5 text-white/70 hover:text-white hover:border-[#7C3AED]/50 transition-colors cursor-pointer">
+                {/* <button className="relative border border-[#1E1E2E] bg-[#12121A] p-2.5 text-white/70 hover:text-white hover:border-[#7C3AED]/50 transition-colors cursor-pointer">
                   <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-[#7C3AED] border border-[#0A0A0F]"></span>
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M12 22a1.5 1.5 0 0 0 1.5-1.5h-3A1.5 1.5 0 0 0 12 22Zm6-6v-5a6 6 0 1 0-12 0v5l-1.5 1.5v.5h15v-.5Z" /></svg>
-                </button>
+                </button> */}
                 <div className="h-10 w-10 border-2 border-[#1E1E2E] bg-[#12121A] overflow-hidden hover:border-[#7C3AED] transition-colors cursor-pointer">
                    <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=admin" alt="PFP" className="w-full h-full object-cover" />
+                   <p className="text-xs text-white/60">{user?.email}</p>
                 </div>
               </div>
             </div>
@@ -267,7 +268,8 @@ export default async function Home() {
                       <p className="text-xs uppercase tracking-[0.18em] text-[#7C3AED] mb-1">Leaderboard</p>
                       <h3 className="text-xl font-semibold tracking-wide">Top Builders</h3>
                     </div>
-                    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-[#7C3AED] filter drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 17.9l.9-5.4L4.2 7.7l5.4-.8z" /></svg>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-[#7C3AED] filter drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 17.9l.9-5.4L4.2 7.7l5.4-.8z" />\
+                    </svg>
                   </div>
                   <div className="mt-5 space-y-3">
                     {leaderboard.map((row, idx) => (
