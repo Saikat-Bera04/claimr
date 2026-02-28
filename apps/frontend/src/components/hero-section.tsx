@@ -23,12 +23,12 @@ export default function HeroSection() {
                             <div className='mt-8 lg:mt-16'>
                                 <DecryptedText
                                     text="Live on Ethereum Sepolia"
-                                    animateOn="view"
+                                    animateOn="hover"
                                     revealDirection="start"
                                     sequential
                                     useOriginalCharsOnly={false}
                                     speed={70}
-                                    className='font-mono text-muted-foreground bg-black px-2 py-1 rounded-md uppercase text-sm border border-white/10'
+                                    className='font-bold text-black bg-[#0A0A0A] px-3 py-1.5 rounded-md uppercase text-sm border border-white/20 shadow-lg tracking-wider font-semibold z-10 relative inline-block'
                                 />
                             </div>
                             <TextEffect
@@ -36,13 +36,13 @@ export default function HeroSection() {
                                 speedSegment={0.3}
                                 as="h1"
                                 className="max-w-2xl text-balance text-5xl font-extrabold md:text-6xl xl:text-7xl">
-                                Earn Crypto by
+                                Earn Crypto
                             </TextEffect>
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="max-w-2xl text-balance text-5xl font-extrabold text-[#22C55E] md:text-6xl xl:text-7xl mt-2">
+                                className="max-w-2xl text-balance text-5xl font-extrabold md:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#22C55E] mt-2 pb-2">
                                 Solving Real Problems
                             </TextEffect>
                             <TextEffect
@@ -51,7 +51,7 @@ export default function HeroSection() {
                                 speedSegment={0.3}
                                 delay={0.5}
                                 as="p"
-                                className="mt-8 max-w-2xl text-pretty text-lg text-[#E5E7EB]/70 p-1">
+                                className="mt-8 max-w-2xl text-pretty text-lg text-white/70 p-1">
                                 Companies post bounties. Students solve them. AI evaluates submissions. Winners get paid automatically on Ethereum.
                             </TextEffect>
                             <AnimatedGroup

@@ -18,16 +18,46 @@ const Web3Logo = () => (
     </div>
 );
 
+const GlowButton = ({
+    href,
+    children,
+    className = "",
+    onClick,
+}: {
+    href?: string;
+    children: React.ReactNode;
+    className?: string;
+    onClick?: () => void;
+}) => {
+    const Component = href ? Link : 'button';
+    const props = href ? { href, className: `bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block ${className}` } : { onClick, className: `bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block ${className}` };
+
+    return (
+        <Component {...props as any}>
+            <span className="absolute inset-0 overflow-hidden rounded-full">
+                <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            </span>
+            <div className="relative flex space-x-2 flex-nowrap items-center justify-center z-10 rounded-full bg-zinc-950 py-1.5 px-4 ring-1 ring-white/10 h-full">
+                <span>{children}</span>
+                <svg fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.75 8.75L14.25 12L10.75 15.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                </svg>
+            </div>
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+        </Component>
+    );
+};
+
 const Navbar = () => {
     const [menuState, setMenuState] = React.useState(false);
     return (
-        <nav data-state={menuState && 'active'} className="bg-background/50 fixed z-50 w-full border-b border-border/10 backdrop-blur-3xl top-0">
+        <nav data-state={menuState && 'active'} className="bg-background/50 fixed z-50 w-full p-7 mb-8 top-0">
             <div className="mx-auto max-w-7xl px-6 transition-all duration-300">
                 <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                     <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
                         <Link href="/" className="flex items-center space-x-3">
                             <Web3Logo />
-                            <span className="font-mono text-lg font-bold text-foreground">ProofOfWork</span>
+                            <span className="font-mono text-lg font-bold text-foreground">ClaimR</span>
                         </Link>
                         <button
                             onClick={() => setMenuState(!menuState)}
@@ -39,14 +69,14 @@ const Navbar = () => {
                     </div>
                     <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-white/10 p-6 shadow-2xl md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-8 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none">
                         <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-6 sm:space-y-0 md:w-fit font-medium text-sm text-muted-foreground">
-                            <Link href="#how-it-works" className="hover:text-foreground transition-colors">How it Works</Link>
-                            <Link href="#bounties" className="hover:text-foreground transition-colors">Bounties</Link>
-                            <Link href="#leaderboard" className="hover:text-foreground transition-colors">Leaderboard</Link>
-                            <Link href="#docs" className="hover:text-foreground transition-colors">Docs</Link>
+                            <Link href="#how-it-works" className="hover:text-foreground font-bold transition-colors">How it Works</Link>
+                            <Link href="#bounties" className="hover:text-foreground font-bold transition-colors">Bounties</Link>
+                            <Link href="#leaderboard" className="hover:text-foreground font-bold transition-colors">Leaderboard</Link>
+                            <Link href="#docs" className="hover:text-foreground font-bold transition-colors">Docs</Link>
                         </div>
-                        <Button asChild size="sm" className="bg-[#6366F1] hover:bg-[#6366F1]/90 text-white rounded-full px-5 text-sm font-semibold">
-                            <Link href="/api/auth/login?returnTo=/dashboard">Connect Wallet</Link>
-                        </Button>
+                        <GlowButton href="/api/auth/login?returnTo=/dashboard">
+                            Connect Wallet
+                        </GlowButton>
                     </div>
                 </div>
             </div>
@@ -82,12 +112,12 @@ const HeroSection = () => {
                         Companies post bounties. Students solve them. AI evaluates submissions. Winners get paid automatically on Ethereum.
                     </TextEffect>
                     <AnimatedGroup variants={({ container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } } }, ...(transitionVariants as any) })} className="mt-10 flex flex-col sm:flex-row gap-4 lg:justify-start">
-                        <Button asChild size="lg" className="px-8 h-14 rounded-full bg-[#6366F1] text-white font-semibold hover:bg-[#6366F1]/90 transition-all text-base border-0 shadow-[0_0_20px_rgba(99,102,241,0.2)]">
-                            <Link href="/api/auth/login?returnTo=/dashboard">Start Solving</Link>
-                        </Button>
-                        <Button asChild size="lg" variant="outline" className="px-8 h-14 rounded-full bg-white/5 border border-white/10 text-foreground font-semibold hover:bg-white/10 transition-all text-base hover:text-white">
-                            <Link href="/dashboard">Post a Bounty</Link>
-                        </Button>
+                        <GlowButton href="/api/auth/login?returnTo=/dashboard">
+                            Start Solving
+                        </GlowButton>
+                        <GlowButton href="/dashboard">
+                            Post a Bounty
+                        </GlowButton>
                     </AnimatedGroup>
                     <p className="mt-6 text-xs text-muted-foreground/80 font-mono tracking-wide">
                         <Shield className="inline-block w-3 h-3 mr-1 -mt-0.5" />
@@ -147,7 +177,7 @@ const HowItWorksSection = () => (
         <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-16">
                 <TextEffect triggerOnView preset="fade-in-blur" speedSegment={0.3} as="h2" className="text-3xl font-bold tracking-tight md:text-5xl">
-                    How ProofOfWork Works
+                    How ClaimR Works
                 </TextEffect>
             </div>
             <AnimatedGroup triggerOnView variants={({ container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }, ...(transitionVariants as any) })} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,7 +187,7 @@ const HowItWorksSection = () => (
                     { icon: <Bot className="text-orange-400" />, title: 'AI Evaluation', desc: 'AI automatically evaluates submissions and scores them fairly.' },
                     { icon: <Zap className="text-yellow-400" />, title: 'Automatic Payout', desc: 'Winning solutions get paid instantly through Ethereum smart contracts.' },
                 ].map((item, idx) => (
-                    <div key={idx} className="group p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 text-center hover:bg-white/[0.04] transition-colors relative overflow-hidden">
+                    <div key={idx} className="group p-8 rounded-[2rem] bg-black/50 border border-white/5 text-center hover:bg-white/[0.04] transition-colors relative overflow-hidden">
                         <CardDecorator>{item.icon}</CardDecorator>
                         <h3 className="mt-8 font-semibold text-lg">{item.title}</h3>
                         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -173,7 +203,7 @@ const WhyProofOfWorkSection = () => (
         <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-16">
                 <TextEffect triggerOnView preset="fade-in-blur" speedSegment={0.3} as="h2" className="text-3xl font-bold tracking-tight md:text-5xl">
-                    Why ProofOfWork
+                    Why ClaimR
                 </TextEffect>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -203,9 +233,9 @@ const FeaturedBountiesSection = () => (
                     <h2 className="text-3xl font-bold tracking-tight md:text-5xl">Featured Bounties</h2>
                     <p className="mt-4 text-muted-foreground text-lg">Pick up a side quest today.</p>
                 </div>
-                <Button asChild variant="outline" className="rounded-full bg-white/5 border border-white/10 text-foreground">
-                    <Link href="/dashboard">View All Bounties <ArrowRight className="ml-2 w-4 h-4" /></Link>
-                </Button>
+                <GlowButton href="/dashboard">
+                    View All Bounties
+                </GlowButton>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -226,7 +256,9 @@ const FeaturedBountiesSection = () => (
                             <span className="text-xs text-muted-foreground uppercase font-mono">Difficulty</span>
                             <span className="text-xs font-semibold px-2 py-1 rounded-md bg-white/5">Intermediate</span>
                         </div>
-                        <Button className="w-full mt-4 bg-white/5 hover:bg-white/10 text-foreground">View Bounty →</Button>
+                        <GlowButton href="/dashboard" className="w-full mt-4">
+                            View Bounty
+                        </GlowButton>
                     </div>
                 </div>
                 {/* Placeholder for design match, prompt said 'Card Top...' */}
@@ -247,7 +279,9 @@ const FeaturedBountiesSection = () => (
                             <span className="text-xs text-muted-foreground uppercase font-mono">Difficulty</span>
                             <span className="text-xs font-semibold px-2 py-1 rounded-md bg-white/5">Advanced</span>
                         </div>
-                        <Button className="w-full mt-4 bg-white/5 hover:bg-white/10 text-foreground">View Bounty →</Button>
+                        <GlowButton href="/dashboard" className="w-full mt-4">
+                            View Bounty
+                        </GlowButton>
                     </div>
                 </div>
                 {/* Placeholder */}
@@ -268,7 +302,9 @@ const FeaturedBountiesSection = () => (
                             <span className="text-xs text-muted-foreground uppercase font-mono">Difficulty</span>
                             <span className="text-xs font-semibold px-2 py-1 rounded-md bg-white/5">Advanced</span>
                         </div>
-                        <Button className="w-full mt-4 bg-white/5 hover:bg-white/10 text-foreground">View Bounty →</Button>
+                        <GlowButton href="/dashboard" className="w-full mt-4">
+                            View Bounty
+                        </GlowButton>
                     </div>
                 </div>
             </div>
@@ -360,12 +396,12 @@ const CTASection = () => (
                 Join ProofOfWork and turn your skills into real crypto earnings.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button asChild size="lg" className="px-8 h-14 rounded-full bg-[#6366F1] text-white font-semibold hover:bg-[#6366F1]/90 transition-all text-base border-0 shadow-lg">
-                    <Link href="/api/auth/login?returnTo=/dashboard">Connect Wallet</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="px-8 h-14 rounded-full bg-white/5 border border-white/10 text-foreground font-semibold hover:bg-white/10 transition-all text-base hover:text-white">
-                    <Link href="/dashboard">Browse Bounties</Link>
-                </Button>
+                <GlowButton href="/api/auth/login?returnTo=/dashboard">
+                    Connect Wallet
+                </GlowButton>
+                <GlowButton href="/dashboard">
+                    Browse Bounties
+                </GlowButton>
             </div>
         </div>
     </section>
