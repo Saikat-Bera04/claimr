@@ -19,6 +19,9 @@ export default defineSchema({
   users: defineTable({
     name: v.string(),
     email: v.string(),
+    walletAddress : v.optional(v.string()),
+    githubUsername : v.optional(v.string()),
+    TotalTokens : v.optional(v.number()),
   }),
 
   solutions: defineTable({

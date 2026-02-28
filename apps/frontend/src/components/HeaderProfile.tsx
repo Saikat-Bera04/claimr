@@ -13,7 +13,7 @@ export default function HeaderProfile({ user }: { user: any }) {
       >
         <div className="h-10 w-10 border-2 border-[#1E1E2E] bg-[#12121A] overflow-hidden group-hover:border-[#22C55E] transition-colors">
         <img
-  src="https://api.dicebear.com/9.x/adventurer/svg?seed=Easton"
+  src={user?.picture || "https://api.dicebear.com/9.x/adventurer/svg?seed=Easton"}
   alt="avatar" />
         </div>
       </div>
@@ -25,7 +25,7 @@ export default function HeaderProfile({ user }: { user: any }) {
             <div className="p-4 border-b border-[#1E1E2E] flex items-center gap-3 bg-[#12121A]">
               <div className="h-12 w-12 border border-[#22C55E] bg-[#0A0A0F] overflow-hidden shrink-0">
                <img
-  src="https://api.dicebear.com/9.x/adventurer/svg?seed=Easton"
+  src={user?.picture || "https://api.dicebear.com/9.x/adventurer/svg?seed=Easton"}
   alt="avatar" />
               </div>
               <div className="overflow-hidden">

@@ -13,6 +13,7 @@ export const createUser = mutation({
   },
 });
 
+//done
 export const getUserDetails = query({
   args: {
     email: v.string(),
@@ -43,5 +44,33 @@ export const getUserDetails = query({
       bountiesGiven,
       bountiesSolved,
     };
+  },
+});
+
+export const updateUserInfo = mutation({
+  args: { 
+    email: v.string(),
+    githubUsername: v.string(),
+    WalletAddress: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const userDetails = await ctx.db
+      .query("users")
+      .filter((q) => q.eq(q.field("email"), args.email))
+      .first();
+
+    if (!userDetails) {
+      // FIX 1: Throwing an error is usually better than returning null, 
+      // as it prevents TypeScript from complaining about inconsistent return types (null vs void)
+      throw new Error("User not found"); 
+    }
+
+    await ctx.db.patch(userDetails._id, {
+      githubUsername: args.githubUsername,
+      walletAddress: args.WalletAddress,
+    });
+
+    // FIX 2: Return something consistently so the frontend knows it succeeded
+    return userDetails._id; 
   },
 });
