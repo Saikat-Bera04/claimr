@@ -214,7 +214,7 @@ export default function UpliftBountyModal() {
                     {/* Remarks */}
                     <div className="space-y-2">
                       <p className="text-xs uppercase tracking-widest text-white/50">// remarks</p>
-                      {analysis.remarks.map((remark, i) => (
+                      {analysis.remarks.map((remark: string, i: number) => (
                         <div key={i} className="flex items-start gap-3 border border-[#1E1E2E] px-4 py-3">
                           <span className="mt-0.5 text-[#22C55E] text-xs">▸</span>
                           <span className="text-sm text-white/80 leading-relaxed">{remark}</span>

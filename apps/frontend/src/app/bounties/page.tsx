@@ -153,7 +153,7 @@ export default async function BountiesPage() {
             <Link href="/bounties" className="text-sm uppercase tracking-wider cursor-pointer text-[#22C55E]">
               Bounties
             </Link>
-            <Link href="/#projects" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
+            <Link href="/projects" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
               Projects
             </Link>
             {user ? (
