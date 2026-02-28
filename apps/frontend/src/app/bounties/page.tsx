@@ -2,6 +2,7 @@ import { auth0 } from "@/lib/auth0";
 import HeaderProfile from "@/components/HeaderProfile";
 import Link from "next/link";
 import BountyFilters from "./BountyFilters";
+import UpliftBountyModal from "./UpliftBountyModal";
 
 const recommendedBounties = [
   {
@@ -170,14 +171,19 @@ export default async function BountiesPage() {
       </nav>
 
       <main className="mx-auto max-w-6xl px-6 py-12 md:px-12">
-        <header className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-widest text-white mb-4">
-            Active <span className="text-[#22C55E]">Targets</span>
-          </h1>
-          <p className="text-white/60 max-w-2xl leading-relaxed">
-            Browse open bounties, claim tasks, and submit your proof. Assignments are 
-            scored and payouts are settled automatically on-chain. 
-          </p>
+        <header className="mb-16 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-widest text-white mb-4">
+              Active <span className="text-[#22C55E]">Targets</span>
+            </h1>
+            <p className="text-white/60 max-w-2xl leading-relaxed">
+              Browse open bounties, claim tasks, and submit your proof. Assignments are 
+              scored and payouts are settled automatically on-chain. 
+            </p>
+          </div>
+          <div>
+            <UpliftBountyModal />
+          </div>
         </header>
 
         {user && (
