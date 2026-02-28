@@ -1,5 +1,5 @@
 
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const createBounty = mutation({
@@ -30,3 +30,50 @@ export const createSolution = mutation({
     return solutionId;
   },
 });
+
+export const getBountyDetailsAfterEnd = query({
+  args: {
+    bountyId: v.id("bounty"),
+  },
+  handler: async (ctx, args) => {
+    const bountyDetails = await ctx.db
+      .query("bounty")
+      .filter((q) => q.eq(q.field("_id"), args.bountyId))
+      .first();
+
+    if (!bountyDetails) {
+      return null;
+    }
+
+    const solutions = await ctx.db
+      .query("solutions")
+      .withIndex("by_bounty", (q) => q.eq("bountyId", args.bountyId))
+      .collect(
+      );
+
+    const selectedSolution = solutions.find((solution) => solution.status === "selected");
+
+    return {
+      ...bountyDetails,
+      solutions,
+      selectedSolution,
+    };
+  },
+});
+
+export const getBountyDetails = query({
+  args: {
+    bountyId: v.id("bounty"),
+  },
+  handler: async (ctx, args) => {
+    const bountyDetails = await ctx.db
+      .query("bounty")
+      .filter((q) => q.eq(q.field("_id"), args.bountyId))
+      .first();
+
+    if (!bountyDetails) {
+      return null;
+    }
+ 
+    return bountyDetails;   
+}});
