@@ -74,7 +74,7 @@ const Navbar = () => {
                             <Link href="#leaderboard" className="hover:text-foreground font-bold transition-colors">Leaderboard</Link>
                             <Link href="#docs" className="hover:text-foreground font-bold transition-colors">Docs</Link>
                         </div>
-                        <GlowButton href="/api/auth/login?returnTo=/dashboard">
+                        <GlowButton href="/api/auth/login">
                             Connect Wallet
                         </GlowButton>
                     </div>
@@ -408,7 +408,7 @@ const CTASection = () => (
                 Join ProofOfWork and turn your skills into real crypto earnings.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <GlowButton href="/api/auth/login?returnTo=/dashboard">
+                <GlowButton href="/api/auth/login">
                     Connect Wallet
                 </GlowButton>
                 <GlowButton href="/dashboard">
