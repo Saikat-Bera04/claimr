@@ -69,14 +69,14 @@ const HeroSection = () => {
                             sequential
                             useOriginalCharsOnly={false}
                             speed={70}
-                            className="font-mono text-[#22C55E] bg-[#22C55E]/10 border border-[#22C55E]/20 px-3 py-1.5 rounded-full uppercase text-xs tracking-wider font-semibold"
+                            className="font-mono text-white bg-black/40 border border-[#22C55E]/20 px-3 py-1.5 rounded-full uppercase text-xs tracking-wider font-semibold"
                         />
                     </div>
                     <TextEffect preset="fade-in-blur" speedSegment={0.3} as="h1" className="text-balance text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
                         Earn Crypto by
                     </TextEffect>
-                    <TextEffect preset="fade-in-blur" speedSegment={0.3} as="h1" className="text-balance text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#22C55E] mt-2 pb-2">
-                        Solving Real Problems
+                    <TextEffect preset="fade-in-blur" speedSegment={0.3} as="h1" className="text-balance text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#22C55E] mt-2 pb-2">
+                        Solving Real Hustles
                     </TextEffect>
                     <TextEffect per="line" preset="fade-in-blur" speedSegment={0.3} delay={0.5} as="p" className="mt-8 max-w-lg text-pretty text-lg text-muted-foreground leading-relaxed">
                         Companies post bounties. Students solve them. AI evaluates submissions. Winners get paid automatically on Ethereum.

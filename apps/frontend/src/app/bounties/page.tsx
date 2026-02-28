@@ -3,6 +3,11 @@ import HeaderProfile from "@/components/HeaderProfile";
 import Link from "next/link";
 import BountyFilters from "./BountyFilters";
 import UpliftBountyModal from "./UpliftBountyModal";
+import { createBounty } from "../../../convex/bountyFunctions";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+// The new BountyCard component is created at: ./BountyCard.tsx
+// import BountyCard from "./BountyCard"; // usage is intentionally commented out below
 
 const recommendedBounties = [
   {
@@ -153,7 +158,7 @@ export default async function BountiesPage() {
             <Link href="/bounties" className="text-sm uppercase tracking-wider cursor-pointer text-[#22C55E]">
               Bounties
             </Link>
-            <Link href="/#projects" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
+            <Link href="/projects" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
               Projects
             </Link>
             {user ? (
@@ -182,7 +187,7 @@ export default async function BountiesPage() {
             </p>
           </div>
           <div>
-            <UpliftBountyModal />
+            <UpliftBountyModal email={user?.email || ""} />
           </div>
         </header>
 
@@ -234,6 +239,30 @@ export default async function BountiesPage() {
         <section>
           <BountyFilters bounties={availableBounties} />
         </section>
+
+        {/**
+         * Example usage of the new `BountyCard` with Convex query/mutation.
+         * This block is intentionally commented out per request — it shows how to
+         * use `getBountyDetails` and a mutation to render/create a card.
+         *
+         * import BountyCard from "./BountyCard";
+         * import { api } from "../../../convex/_generated/api";
+         * import { useMutation } from "convex/react";
+         *
+         * // const { data: details } = api.getBountyDetails.useQuery({ id: "avl-1" });
+         * // const createBountyMutation = useMutation(api.createBounty);
+         *
+         * // const formData = { title: 'Example', description: 'Desc', amount: '100', unit: 'USDC', endDate: '2026-03-01' };
+         * // const newCard = {
+         * //   title: formData.title,
+         * //   description: formData.description,
+         * //   amount: parseFloat(formData.amount),
+         * //   unit: formData.unit,
+         * //   endDate: new Date(formData.endDate),
+         * //   bountySetter: user?.email || 'userId'
+         * // };
+         * // <BountyCard bounty={details ?? newCard} />
+         */}
       </main>
     </div>
   );

@@ -65,6 +65,9 @@ export default async function Home() {
             <a href="/bounties" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
               Bounties
             </a>
+            <a href="/projects" className="text-sm uppercase tracking-wider cursor-pointer hover:text-white/70 transition-colors">
+              Projects
+            </a>
             {navLinks.map((link) => (
               <a
                 key={link}

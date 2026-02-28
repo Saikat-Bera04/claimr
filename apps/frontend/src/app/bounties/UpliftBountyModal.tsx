@@ -1,6 +1,8 @@
 "use client";
 
+import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
+import { api } from "../../../convex/_generated/api";
 import { upliftBounty, type BountyAnalysis } from "./uplift";
 
 type Step = "form" | "analysing" | "review";
@@ -12,7 +14,7 @@ const verdictColor: Record<string, string> = {
   POOR: "#EF4444",
 };
 
-export default function UpliftBountyModal() {
+export default function UpliftBountyModal( email : {email : string}) {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<Step>("form");
   const [formData, setFormData] = useState({
@@ -32,12 +34,32 @@ export default function UpliftBountyModal() {
     setIsOpen(false);
   };
 
+
+   const createBounty = useMutation(api.bountyFunctions.createBounty)
+   const getUserIdByemail = useQuery(api.userFunctions.getUserDetails, { email: email.email });
+
+
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleGlobalSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
+    // Logic to submit globally
+    const userId = getUserIdByemail?._id;
+    if (!userId) {
+      console.error("User ID not found for email:", email.email);
+      return;
+    }
+    createBounty({
+      title: formData.title,
+      description: formData.description,
+      amount: parseFloat(formData.amount),
+      unit: formData.unit,
+      endDate: new Date(formData.endDate),
+      bountySetter: userId, // Replace with actual user ID from session
+    });
     console.log("Submitting Globally:", formData);
     resetModal();
   };
@@ -214,7 +236,7 @@ export default function UpliftBountyModal() {
                     {/* Remarks */}
                     <div className="space-y-2">
                       <p className="text-xs uppercase tracking-widest text-white/50">// remarks</p>
-                      {analysis.remarks.map((remark, i) => (
+                      {analysis.remarks.map((remark : any, i : any) => (
                         <div key={i} className="flex items-start gap-3 border border-[#1E1E2E] px-4 py-3">
                           <span className="mt-0.5 text-[#22C55E] text-xs">▸</span>
                           <span className="text-sm text-white/80 leading-relaxed">{remark}</span>
