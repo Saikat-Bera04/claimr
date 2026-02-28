@@ -1,6 +1,8 @@
 import { auth0 } from "@/lib/auth0";
 import Typewriter from "@/components/Typewriter";
 import HeaderProfile from "@/components/HeaderProfile";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const projects = [
   {
@@ -40,6 +42,8 @@ const navLinks = ["About", "Projects", "Contact"];
 export default async function Home() {
   let session = null;
 
+  const createUserinDB = useMutation(api.userFunctions.createUser);
+
   try {
     session = await auth0.getSession();
   } catch (error) {
@@ -52,6 +56,13 @@ export default async function Home() {
   }
 
   const user = session?.user;
+
+  if (user && !session?.isAuthenticated) {
+    await createUserinDB({
+      email: user.email as string,
+      name: user.name as string,
+    });
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">

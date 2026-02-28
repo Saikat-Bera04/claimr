@@ -1,7 +1,6 @@
 "use server";
 
 import {   GoogleGenAI, type Schema } from "@google/genai";
-const NEXT_PUBLIC_GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
 const genAI = new GoogleGenAI({});
 
 export interface BountyData {
@@ -50,11 +49,9 @@ Score based on: clarity of scope (25 pts), reward competitiveness vs market (25 
     
   });
 
-  
-
   const result=model.text
  
-   
+ 
   
   return result;
 }
