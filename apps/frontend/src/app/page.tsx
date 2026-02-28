@@ -2,8 +2,7 @@ import { auth0 } from "@/lib/auth0";
 import Image from "next/image";
 import Typewriter from "@/components/Typewriter";
 import HeaderProfile from "@/components/HeaderProfile";
-import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import CreateUserClient from "./CreateUserClient";
 
 const projects = [
   {
@@ -43,7 +42,6 @@ const navLinks = ["About", "Projects", "Contact"];
 export default async function Home() {
   let session = null;
 
-  const createUserinDB = useMutation(api.userFunctions.createUser);
 
   try {
     session = await auth0.getSession();
@@ -58,12 +56,10 @@ export default async function Home() {
 
   const user = session?.user;
 
-  if (user && !session?.isAuthenticated) {
-    await createUserinDB({
-      email: user.email as string,
-      name: user.name as string,
-    });
-  }
+  // CreateUserClient (client) will handle creating the user record when
+  // the client mounts. We avoid using client-only hooks (useMutation)
+  // inside this server component to prevent the "createContext only works"
+  // runtime error.
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -104,6 +100,7 @@ export default async function Home() {
       </nav>
 
       <div className="mx-auto max-w-6xl px-6 md:px-12">
+        {user && <CreateUserClient user={user} />}
         {/* ── HERO ── */}
         <section className="py-24 md:py-32 flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Left — text */}
