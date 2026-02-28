@@ -11,12 +11,15 @@ import Dither from "@/components/Dither";
 import {
     Menu, X, Code, Layout, BrainCircuit, ArrowRight, Shield, MessageSquare, Briefcase, Zap, Bot, Upload, Wallet
 } from "lucide-react";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const Web3Logo = () => (
     <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#6366F1] to-[#22C55E]">
         <span className="text-white font-mono text-xs font-bold">PW</span>
     </div>
 );
+
 
 const GlowButton = ({
     href,
@@ -79,7 +82,7 @@ const Navbar = () => {
               >
                 <GlowButton >
                             Sign in
-                        </GlowButton>
+                </GlowButton>
               </a>
                         
                     </div>
