@@ -1,8 +1,10 @@
 "use client";
 
+import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
+import { api } from "../../../convex/_generated/api";
 
-export default function UpliftBountyModal() {
+export default function UpliftBountyModal( email : {email : string}) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -12,6 +14,10 @@ export default function UpliftBountyModal() {
     endDate: "",
   });
 
+
+   const createBounty = useMutation(api.bountyFunctions.createBounty)
+   const getUserIdByemail = useQuery(api.userFunctions.getUserDetails, { email: email.email });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -19,6 +25,19 @@ export default function UpliftBountyModal() {
   const handleGlobalSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     // Logic to submit globally
+    const userId = getUserIdByemail?._id;
+    if (!userId) {
+      console.error("User ID not found for email:", email.email);
+      return;
+    }
+    createBounty({
+      title: formData.title,
+      description: formData.description,
+      amount: parseFloat(formData.amount),
+      unit: formData.unit,
+      endDate: new Date(formData.endDate),
+      bountySetter: userId, // Replace with actual user ID from session
+    });
     console.log("Submitting Globally:", formData);
     setIsOpen(false);
   };
