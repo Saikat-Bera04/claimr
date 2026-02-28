@@ -104,16 +104,16 @@ export default async function Home() {
           </p>
           <div className="mt-10 flex gap-4">
             <a
-              href="#projects"
+              href="/bounties"
               className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
             >
-              View Projects
+              View Bounties
             </a>
             <a
               href="#contact"
               className="border border-white px-6 py-3 text-sm uppercase tracking-wider cursor-pointer hover:bg-white hover:text-black transition-colors"
             >
-              Get in Touch
+              Contact Us
             </a>
           </div>
         </section>
