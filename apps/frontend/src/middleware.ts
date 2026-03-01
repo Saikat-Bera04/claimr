@@ -2,6 +2,8 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { auth0 } from "./lib/auth0";
 
+export const runtime = "nodejs";
+
 export async function middleware(request: NextRequest) {
   // Let Auth0 handle its own routes first (/auth/*)
   const authResponse = await auth0.middleware(request);
