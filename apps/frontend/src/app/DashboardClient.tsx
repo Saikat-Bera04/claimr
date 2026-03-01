@@ -104,9 +104,23 @@ export default function DashboardClient({ sessionUser }: { sessionUser: any }) {
               </h1>
               
               {/* Display GitHub and Wallet if they exist */}
-              <div className="space-y-1 text-xs uppercase tracking-widest text-white/50">
-                <p>GITHUB: {githubUsername ? `@${githubUsername}` : "NOT_LINKED"}</p>
-                <p>WALLET: {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "NOT_LINKED"}</p>
+              <div className="space-y-2 text-xs uppercase tracking-widest mt-4">
+                <div className="flex items-center gap-2">
+                  <span className={`${githubUsername ? 'text-[#22C55E]' : 'text-white/50'}`}>
+                    ✓ GITHUB:
+                  </span>
+                  <span className={`${githubUsername ? 'text-white font-semibold' : 'text-white/50'}`}>
+                    {githubUsername ? `@${githubUsername}` : "NOT_LINKED"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className={`${walletAddress ? 'text-[#22C55E]' : 'text-white/50'}`}>
+                    ✓ WALLET:
+                  </span>
+                  <span className={`font-mono font-semibold ${walletAddress ? 'text-[#22C55E] bg-[#22C55E]/10 px-3 py-1 rounded border border-[#22C55E]/30' : 'text-white/50'}`}>
+                    {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "NOT_LINKED"}
+                  </span>
+                </div>
               </div>
             </div>
 
