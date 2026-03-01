@@ -14,6 +14,7 @@ import {
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { InfiniteLogoChain } from "@/components/ui/infinite-logo-chain";
+import { FloatingDots } from "@/components/ui/floating-dots";
 
 const GlowButton = ({
     href,
@@ -134,41 +135,7 @@ const HeroSection = () => {
                     </p>
                 </div>
 
-                {/* Hero Right Box (Live Bounties) */}
-                {/* <div className="relative w-full max-w-md mx-auto lg:ml-auto lg:mr-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1]/20 to-[#22C55E]/10 rounded-[2rem] blur-xl opacity-50" />
-                    <div className="relative border border-white/10 rounded-[2rem] bg-[#0A0A0A]/80 backdrop-blur-2xl p-6 md:p-8 shadow-2xl">
-                        <div className="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
-                            <h3 className="font-semibold text-xl tracking-tight flex items-center gap-2">
-                                <span className="relative flex h-3 w-3">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[#22C55E]"></span>
-                                </span>
-                                Live Bounties
-                            </h3>
-                        </div>
-
-                        <div className="space-y-4">
-                            {[
-                                { title: 'Python Web Scraper', desc: 'Scrape product prices from Amazon and export to CSV.', reward: '0.02 ETH', color: 'text-blue-400', bg: 'bg-blue-400/10' },
-                                { title: 'Landing Page Design', desc: 'Design a clean landing page for a fintech startup.', reward: '75 USDC', color: 'text-pink-400', bg: 'bg-pink-400/10' },
-                                { title: 'ML Classification Task', desc: 'Train a classification model with 90%+ accuracy.', reward: '0.05 ETH', color: 'text-purple-400', bg: 'bg-purple-400/10' },
-                            ].map((job, idx) => (
-                                <div key={idx} className="group p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] hover:border-white/10 transition-all cursor-pointer">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h4 className="font-medium text-sm text-foreground group-hover:text-[#6366F1] transition-colors">{job.title}</h4>
-                                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#22C55E]/10 text-[#22C55E]">Open</span>
-                                    </div>
-                                    <p className="text-xs text-muted-foreground leading-snug mb-3 line-clamp-2">{job.desc}</p>
-                                    <div className="flex items-center justify-between mt-auto">
-                                        <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground">Reward</span>
-                                        <span className={`font-mono font-semibold text-xs ${job.color}`}>{job.reward}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div> */}
+             
                 <div>
                     <div className="relative w-full max-w-2xl mx-auto lg:ml-auto lg:mr-0">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1]/20 to-[#22C55E]/10 rounded-[3rem] blur-xl opacity-50" />
@@ -528,6 +495,9 @@ export default function LandingPage() {
                     waveSpeed={0.05}
                 />
             </div>
+
+            {/* Floating Dots */}
+            <FloatingDots />
 
             <Navbar />
 
