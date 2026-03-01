@@ -7,6 +7,8 @@ import Navbar from "@/components/Navbar";
 import Typewriter from "@/components/Typewriter";
 import CreateUserClient from "./CreateUserClient";
 import UpdateProfileModal from "@/components/UpdateProfileModal";
+import OnboardingChecklist from "@/components/OnboardingChecklist";
+import ProgressTracker from "@/components/ProgressTracker";
 import { useEffect, useState } from "react";
 
 export default function DashboardClient({ sessionUser }: { sessionUser: any }) {
@@ -139,6 +141,24 @@ export default function DashboardClient({ sessionUser }: { sessionUser: any }) {
           </div>
         </section>
 
+        {/* ── ONBOARDING CHECKLIST ── */}
+        <section className="pb-8">
+          <OnboardingChecklist
+            onEditProfile={() => setProfileModalOpen(true)}
+            hasGithub={!!githubUsername}
+            hasWallet={!!walletAddress}
+          />
+        </section>
+
+        {/* ── PROGRESS TRACKER ── */}
+        <section className="pb-8">
+          <ProgressTracker
+            solvedCount={bountiesSolved.length}
+            postedCount={bountiesGiven.length}
+            totalEarned={TotalTokens || 0}
+          />
+        </section>
+
         <hr className="border-[#1E1E2E]" />
 
         {/* ── BOUNTIES SOLVED (HUNTER) ── */}
@@ -257,6 +277,31 @@ export function SetterBountyCard({ bountyId, fallback }: { bountyId: Id<"bounty"
       </div>
 
       <div className="pt-2">
+        {/* ── Poster Analytics ── */}
+        {solutions.length > 0 && (
+          <div className="border border-[#1E1E2E] bg-[#0A0A0F] p-4 mb-4">
+            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">// Poster Analytics</p>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="text-center">
+                <span className="block text-xl font-bold text-white tabular-nums">{solutions.length}</span>
+                <span className="text-[10px] text-white/30 uppercase tracking-widest">Submissions</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-xl font-bold text-[#22C55E] tabular-nums">
+                  {solutions.length > 0 ? Math.round(solutions.reduce((a: number, s: any) => a + (s.score || 0), 0) / solutions.length) : 0}
+                </span>
+                <span className="text-[10px] text-white/30 uppercase tracking-widest">Avg Score</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-xl font-bold text-white tabular-nums">
+                  {solutions.length > 0 ? Math.max(...solutions.map((s: any) => s.score || 0)) : 0}
+                </span>
+                <span className="text-[10px] text-white/30 uppercase tracking-widest">Top Score</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         <p className="text-xs uppercase tracking-widest text-white/40 mb-4">
           // Submitted Proofs ({solutions.length})
         </p>
