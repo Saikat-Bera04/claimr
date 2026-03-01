@@ -13,13 +13,7 @@ import {
 } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-
-const Web3Logo = () => (
-    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#6366F1] to-[#22C55E]">
-        <span className="text-white font-mono text-xs font-bold">PW</span>
-    </div>
-);
-
+import { InfiniteLogoChain } from "@/components/ui/infinite-logo-chain";
 
 const GlowButton = ({
     href,
@@ -59,7 +53,7 @@ const Navbar = () => {
                 <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                     <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
                         <Link href="/" className="flex items-center space-x-3">
-                            <Web3Logo />
+                            <img src="/logo.png" alt="ClaimR Logo" className="w-8 h-8" />
                             <span className="font-mono text-lg font-bold text-foreground">ClaimR</span>
                         </Link>
                         <button
@@ -207,6 +201,7 @@ const HowItWorksSection = () => (
                     How ClaimR Works
                 </TextEffect>
             </div>
+            
             <AnimatedGroup triggerOnView variants={({ container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }, ...(transitionVariants as any) })} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                     { icon: <Wallet className="text-[#6366F1]" />, title: 'Post a Bounty', desc: 'Companies and developers post tasks and lock crypto rewards in smart contracts.' },
@@ -222,17 +217,22 @@ const HowItWorksSection = () => (
                 ))}
             </AnimatedGroup>
         </div>
+        {/* Infinite Logo Chain */}
+            <div className="mb-1">
+                <InfiniteLogoChain />
+            </div>
     </section>
 );
 
 const WhyProofOfWorkSection = () => (
     <section className="py-24 sm:py-32 border-b border-white/5 bg-foreground/[0.01]">
         <div className="mx-auto max-w-7xl px-6">
-            <div className="text-center mb-16">
+            <div className="text-center mb-6">
                 <TextEffect triggerOnView preset="fade-in-blur" speedSegment={0.3} as="h2" className="text-3xl font-bold tracking-tight md:text-5xl">
                     Why ClaimR
                 </TextEffect>
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
                     { icon: <Shield className="w-8 h-8 text-[#6366F1]" />, title: 'Trustless Payments', desc: 'Rewards are locked in smart contracts before work begins. No ghosting. Guaranteed payouts.' },
@@ -490,9 +490,9 @@ const Footer = () => (
     <footer className="border-t border-white/5 bg-background">
         <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-                <Web3Logo />
+                <img src="/logo.png" alt="ClaimR Logo" className="w-10 h-10" />
                 <div>
-                    <span className="font-bold text-foreground block">ProofOfWork</span>
+                    <span className="font-bold text-foreground block">ClaimR</span>
                     <span className="text-xs text-muted-foreground">Earn crypto by solving real problems.</span>
                 </div>
             </div>
