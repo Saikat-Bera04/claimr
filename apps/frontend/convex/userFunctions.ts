@@ -8,11 +8,12 @@ export const createUser = mutation({
     email: v.string(),
    },
   handler: async (ctx, args) => {
-    const newId = await ctx.db.insert("users", { name: args.name, email: args.email });
+    const newId = await ctx.db.insert("users", { name: args.name, email: args.email, TotalTokens: 100 });
     return newId;
   },
 });
 
+//done
 export const getUserDetails = query({
   args: {
     email: v.string(),
@@ -43,5 +44,31 @@ export const getUserDetails = query({
       bountiesGiven,
       bountiesSolved,
     };
+  },
+});
+
+export const updateUserInfo = mutation({
+  args: { 
+    email: v.string(),
+    githubUsername: v.string(),
+    WalletAddress: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const userDetails = await ctx.db
+      .query("users")
+      .filter((q) => q.eq(q.field("email"), args.email))
+      .first();
+
+    if (!userDetails) {
+      throw new Error("User not found"); 
+    }
+
+    await ctx.db.patch(userDetails._id, {
+      githubUsername: args.githubUsername,
+      walletAddress: args.WalletAddress,
+    });
+
+    // FIX 2: Return something consistently so the frontend knows it succeeded
+    return userDetails._id; 
   },
 });

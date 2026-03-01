@@ -8,6 +8,7 @@ export default defineSchema({
     amount: v.number(), 
     unit: v.string(),
     endDate: v.any(), 
+    escrowAmount: v.optional(v.number()),
     amountStatus: v.string(),
     bountyStatus: v.string(),
     bountySetter: v.id("users"),
@@ -19,6 +20,9 @@ export default defineSchema({
   users: defineTable({
     name: v.string(),
     email: v.string(),
+    walletAddress : v.optional(v.string()),
+    githubUsername : v.optional(v.string()),
+    TotalTokens : v.optional(v.number()),
   }),
 
   solutions: defineTable({
