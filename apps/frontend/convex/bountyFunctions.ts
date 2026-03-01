@@ -61,19 +61,27 @@ export const getBountyDetailsAfterEnd = query({
   },
 });
 
+
 export const getBountyDetails = query({
   args: {
     bountyId: v.id("bounty"),
   },
   handler: async (ctx, args) => {
-    const bountyDetails = await ctx.db
-      .query("bounty")
-      .filter((q) => q.eq(q.field("_id"), args.bountyId))
-      .first();
-
+    // Instant, optimized lookup by ID
+    const bountyDetails = await ctx.db.get(args.bountyId);
+    
     if (!bountyDetails) {
       return null;
     }
- 
     return bountyDetails;   
-}});
+  }
+});
+
+// convex/bountyFunctions.ts
+
+export const getAllBounties = query({
+  handler: async (ctx) => {
+    // Fetches all bounties, newest first
+    return await ctx.db.query("bounty").order("desc").collect();
+  },
+});
