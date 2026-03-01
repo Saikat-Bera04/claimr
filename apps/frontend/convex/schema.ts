@@ -8,6 +8,7 @@ export default defineSchema({
     amount: v.number(), 
     unit: v.string(),
     endDate: v.any(), 
+    escrowAmount: v.optional(v.number()),
     amountStatus: v.string(),
     bountyStatus: v.string(),
     bountySetter: v.id("users"),

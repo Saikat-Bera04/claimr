@@ -8,7 +8,7 @@ export const createUser = mutation({
     email: v.string(),
    },
   handler: async (ctx, args) => {
-    const newId = await ctx.db.insert("users", { name: args.name, email: args.email });
+    const newId = await ctx.db.insert("users", { name: args.name, email: args.email, TotalTokens: 100 });
     return newId;
   },
 });
@@ -60,8 +60,6 @@ export const updateUserInfo = mutation({
       .first();
 
     if (!userDetails) {
-      // FIX 1: Throwing an error is usually better than returning null, 
-      // as it prevents TypeScript from complaining about inconsistent return types (null vs void)
       throw new Error("User not found"); 
     }
 
