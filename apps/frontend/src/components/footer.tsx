@@ -29,7 +29,7 @@ export default function FooterSection() {
                     href="/"
                     aria-label="go home"
                     className="mx-auto block size-fit">
-                    <V0Icon size={30} className='text-foreground'/>
+                    <V0Icon  className='text-foreground'/>
                 </Link>
 
                 <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">

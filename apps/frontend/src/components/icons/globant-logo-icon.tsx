@@ -1,9 +1,8 @@
 import * as React from "react";
-import {IconProps} from "@/types";
 
-const GlobantLogoIcon = ({size, ...props}: IconProps) => (
+const GlobantLogoIcon = ({height = 16, ...props}: React.SVGProps<SVGSVGElement>) => (
     <svg
-        height={size}
+        height={height}
         viewBox="0 0 1596 314"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"

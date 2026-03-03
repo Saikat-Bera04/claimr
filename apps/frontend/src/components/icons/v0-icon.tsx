@@ -1,9 +1,8 @@
 import * as React from "react";
-import {IconProps} from "@/types";
 
-const v0Icon = ({size, ...props}: IconProps) => (
+const v0Icon = ({height = 16, ...props}: React.SVGProps<SVGSVGElement>) => (
     <svg
-        height={size}
+        height={height}
         xmlns="http://www.w3.org/2000/svg"
         strokeLinejoin="round"
         viewBox="0 0 16 16"

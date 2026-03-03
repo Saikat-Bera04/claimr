@@ -1,10 +1,9 @@
 import * as React from "react";
-import {IconProps} from "@/types";
 
-const VercelWordmarkIcon = ({size, ...props}: IconProps) => (
+const VercelWordmarkIcon = ({height = 16, ...props}: React.SVGProps<SVGSVGElement>) => (
     <svg
         aria-label="Vercel logotype"
-        height={size}
+        height={height}
         role="img"
         viewBox="0 0 262 52"
         xmlns="http://www.w3.org/2000/svg"

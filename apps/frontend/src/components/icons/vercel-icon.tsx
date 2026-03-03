@@ -1,10 +1,9 @@
 import * as React from "react";
-import {IconProps} from "@/types";
 
-const VercelIcon = ({size, ...props}: IconProps) => (
+const VercelIcon = ({height = 16, ...props}: React.SVGProps<SVGSVGElement>) => (
     <svg
         viewBox="0 0 256 222"
-        height={size}
+        height={height}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid"
         fill="currentColor"
