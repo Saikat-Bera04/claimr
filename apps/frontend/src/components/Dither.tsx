@@ -134,14 +134,14 @@ void mainImage(in vec4 inputColor, in vec2 uv, out vec4 outputColor) {
 `;
 
 class RetroEffectImpl extends Effect {
-    public uniforms: Map<string, THREE.Uniform<any>>;
+    public uniforms: Map<string, any>;
 
     constructor() {
-        const uniforms = new Map<string, THREE.Uniform<any>>([
-            ['colorNum', new THREE.Uniform(4.0)],
-            ['pixelSize', new THREE.Uniform(2.0)]
+        const uniforms = new Map([
+            ['colorNum', 4.0],
+            ['pixelSize', 2.0]
         ]);
-        super('RetroEffect', ditherFragmentShader, {uniforms});
+        super('RetroEffect', ditherFragmentShader, {uniforms: uniforms as unknown as Map<string, THREE.Uniform<WaveUniformValue>>});
         this.uniforms = uniforms;
     }
 
@@ -170,8 +170,10 @@ const RetroEffect = forwardRef<RetroEffectImpl, { colorNum: number; pixelSize: n
 
 RetroEffect.displayName = 'RetroEffect';
 
+type WaveUniformValue = number | THREE.Vector2 | THREE.Color;
+
 interface WaveUniforms {
-    [key: string]: THREE.Uniform<any>;
+    [key: string]: THREE.Uniform<WaveUniformValue>;
 
     time: THREE.Uniform<number>;
     resolution: THREE.Uniform<THREE.Vector2>;

@@ -97,7 +97,7 @@ export default function BountyFilters({ bounties }: { bounties: HardcodedBounty[
       <div className="space-y-4">
         {filteredBounties.length === 0 ? (
           <div className="border border-[#1E1E2E] bg-[#12121A] p-12 text-center text-white/40 font-mono text-sm uppercase tracking-widest">
-            // ERR: NO_TARGETS_FOUND
+            {/* ERR: NO_TARGETS_FOUND */}
           </div>
         ) : (
           filteredBounties.map((bounty) => (

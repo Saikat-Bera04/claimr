@@ -244,7 +244,7 @@ export default function BountyDetailsClient({
             </div>
           ) : (
             <SubmitSolutionModal
-            //@ts-ignore 
+              // @ts-expect-error - local mock bounties use string IDs but Convex expects Id<\"bounty\">
               bountyId={resolved._id}
               bountyTitle={resolved.title}
               bountyDescription={resolved.description}

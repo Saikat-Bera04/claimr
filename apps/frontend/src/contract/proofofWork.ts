@@ -17,13 +17,13 @@ const NFT_CONTRACT_ADDRESS = "0xYourNFTContractAddressHere";
 export async function fetchUserAchievements(userAddress: string) {
   try {
     // 2. Setup a read-only provider 
-    // (You don't strictly need window.ethereum for read-only calls if you use an RPC URL, 
-    // but we'll use it here assuming the user is connected)
-    //@ts-ignore
+  // (You don't strictly need window.ethereum for read-only calls if you use an RPC URL, 
+  // but we'll use it here assuming the user is connected)
+  // @ts-expect-error - window.ethereum is injected by the wallet at runtime
     if (!window.ethereum) {
       throw new Error("No crypto wallet found.");
     }
-    //@ts-ignore
+    // @ts-expect-error - window.ethereum is injected by the wallet at runtime
     const provider = new BrowserProvider(window.ethereum);
     
     // Note: We don't need a signer here because we are only reading data, not sending transactions.

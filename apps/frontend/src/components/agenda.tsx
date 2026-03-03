@@ -30,7 +30,23 @@ export default function Agenda() {
                                     },
                                 },
                             },
-                            ...transitionVariants,
+                            item: {
+                                hidden: {
+                                    opacity: 0,
+                                    filter: "blur(12px)",
+                                    y: 12,
+                                },
+                                visible: {
+                                    opacity: 1,
+                                    filter: "blur(0px)",
+                                    y: 0,
+                                    transition: {
+                                        type: "spring",
+                                        bounce: 0.3,
+                                        duration: 1.5,
+                                    },
+                                },
+                            },
                         }}
                         className="divide-y divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0"
                     >

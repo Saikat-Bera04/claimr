@@ -11,13 +11,13 @@ const CONTRACT_ADDRESS = "0xYourBountyEscrowContractAddressHere";
 export async function submitBountySolution(bountyId: number, ipfsHash: string) {
   try {
     // 2. Ensure the user has a wallet connected (e.g., MetaMask)
-    //@ts-ignore
+    // @ts-expect-error - window.ethereum is injected by the wallet at runtime
     if (!window.ethereum) {
       throw new Error("No crypto wallet found. Please install MetaMask.");
     }
 
     // 3. Setup the Provider and Signer
-    //@ts-ignore
+    // @ts-expect-error - window.ethereum is injected by the wallet at runtime
     const provider = new BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
 

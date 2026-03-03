@@ -37,26 +37,55 @@ export default function CallToAction() {
                                     },
                                 },
                             },
-                            ...transitionVariants,
+                            item: {
+                                hidden: {
+                                    opacity: 0,
+                                    filter: "blur(12px)",
+                                    y: 12,
+                                },
+                                visible: {
+                                    opacity: 1,
+                                    filter: "blur(0px)",
+                                    y: 0,
+                                    transition: {
+                                        type: "spring",
+                                        bounce: 0.3,
+                                        duration: 1.5,
+                                    },
+                                },
+                            },
                         }}
-                        className="mt-12 flex flex-wrap justify-center gap-4"
+                        className="divide-y divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0"
                     >
-                        <Button
-                            asChild
-                            size="lg">
-                            <Link href="#">
-                                <span>Register</span>
-                            </Link>
-                        </Button>
-
-                        <Button
-                            asChild
-                            size="lg"
-                            variant="outline">
-                            <Link href="#">
-                                <span>Contact the Host</span>
-                            </Link>
-                        </Button>
+                        <div className="pb-6">
+                            <div className="font-medium space-x-2">
+                                <span className='text-muted-foreground font-mono '>11:00</span>
+                                <span>Welcome Video</span>
+                            </div>
+                            <p className="text-muted-foreground mt-4">A special welcome from the v0 Team</p>
+                        </div>
+                        <div className="py-6">
+                            <div className="font-medium space-x-2">
+                                <span className='text-muted-foreground font-mono '>11:30</span>
+                                <span>Build Time!</span>
+                            </div>
+                            <p className="text-muted-foreground mt-4">Hands on to build your project with v0.</p>
+                        </div>
+                        <div className="py-6">
+                            <div className="font-medium space-x-2">
+                                <span className='text-muted-foreground font-mono '>13:00</span>
+                                <span>Showcase Sprint</span>
+                            </div>
+                            <p className="text-muted-foreground mt-4">Show a quick presentation of what you built.</p>
+                        </div>
+                        <div className="py-6">
+                            <div className="font-medium space-x-2">
+                                <span className='text-muted-foreground font-mono '>13:30</span>
+                                <span>Networking and Event Close</span>
+                            </div>
+                            <p className="text-muted-foreground mt-4">Take some time to interact with other and share
+                                ideas.</p>
+                        </div>
                     </AnimatedGroup>
                 </div>
             </div>

@@ -145,7 +145,7 @@ export default function SubmitSolutionModal({
       setStep("success");
     } catch (err: any) {
       console.error(err);
-      setError("Failed to save solution on-chain. Try again.");
+      setError("Failed to save solution. Please try again.");
       setStep("report");
     }
   };
