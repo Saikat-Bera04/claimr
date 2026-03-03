@@ -1,5 +1,4 @@
 import { auth0 } from "@/lib/auth0";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import UpliftBountyModal from "./UpliftBountyModal";
 import BountyListClient from "./BountyListClient";

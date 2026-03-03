@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { auth0 } from "@/lib/auth0";
 import Navbar from "@/components/Navbar";
 

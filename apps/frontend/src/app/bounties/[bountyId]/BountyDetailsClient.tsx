@@ -233,12 +233,24 @@ export default function BountyDetailsClient({
             </div>
           </div>
 
-         <SubmitSolutionModal 
-    bountyId={resolved._id}
-    bountyTitle={resolved.title}
-    bountyDescription={resolved.description}
-    userEmail={userEmail}
-  />
+         {resolved.endDate < Date.now() || resolved.amountStatus === "RELEASED" ? (
+            <div className="w-full border border-red-500/40 bg-red-500/10 px-6 py-4 text-center">
+              <span className="text-sm font-bold text-red-400 uppercase tracking-widest">
+                [ Time_Is_Over ]
+              </span>
+              <p className="text-[10px] text-red-400/60 uppercase tracking-widest mt-1">
+                This bounty is no longer accepting submissions
+              </p>
+            </div>
+          ) : (
+            <SubmitSolutionModal
+            //@ts-ignore 
+              bountyId={resolved._id}
+              bountyTitle={resolved.title}
+              bountyDescription={resolved.description}
+              userEmail={userEmail}
+            />
+          )}
         </div>
       </div>
 
